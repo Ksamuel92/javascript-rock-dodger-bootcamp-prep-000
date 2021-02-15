@@ -56,14 +56,18 @@ function createRock(x) {
    * seems like a good pace.)
    */
   function moveRock() {
+    //moves top of rock two pixels down (essentially "moving" the rock)
     rock.style.top = `${top += 2}px`;
+    // checks if there is a collision with rock from dodger
     if (checkCollision(rock) === true) {
        return endGame();
+       // this basically is saying as long as the top is less than GAME_HEIGHT, to let it fall.
      } if (top < GAME_HEIGHT) {
        window.requestAnimationFrame(moveRock);
      } else { rock.remove();
      }
   }
+  // this requests to use the moveRock() function on the next frame
     window.requestAnimationFrame(moveRock);
   ROCKS.push(rock);
 return rock;
@@ -77,9 +81,11 @@ return rock;
  * Finally, alert "YOU LOSE!" to the player.
  */
 function endGame() {
+  //gameInterval calls the createRock function and randomly assigns it a position on the x axis
   clearInterval(gameInterval);
+  // this uses the forEach() array iterator to remove all rocks in the ROCKS array.
   ROCKS.forEach(function(rock) { rock.remove() });
-
+  //This removes the event listener for moveDodger located in the start() function
   document.removeEventListener('keydown', moveDodger);
   alert('YOU LOSE!');
 }
