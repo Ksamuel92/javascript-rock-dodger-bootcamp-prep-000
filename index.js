@@ -43,7 +43,9 @@ function createRock(x) {
   const rock = document.createElement('div');
   // assign class name .rock to rock
   rock.className = 'rock';
+  // generates position on the x axis
   rock.style.left = `${x}px`;
+  //rock will always be generated at the top
   var top = rock.style.top = 0;
   GAME.appendChild(rock);
   
